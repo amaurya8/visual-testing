@@ -19,6 +19,8 @@ def compare_images(actual_image_path, baseline_image_path, diff_image_path):
             pixel_diff = diff.getpixel((x, y))
             if pixel_diff != (0, 0, 0):  # If the pixel differs, add a red contour
                 draw.rectangle((x, y, x + 1, y + 1), outline="red")
+            else:  # If the pixel matches, copy the pixel from the actual image
+                differences.putpixel((x, y), actual_image.getpixel((x, y)))
 
     # Save the diff image with discrepancies highlighted
     differences.save(diff_image_path)
